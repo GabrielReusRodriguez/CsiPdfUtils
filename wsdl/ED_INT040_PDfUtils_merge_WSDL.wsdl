@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="CsiPdfUtils"
+   targetNamespace="http://PdfUtils.csi.org/merge/"
+   xmlns:csi="http://PdfUtils.csi.org/merge/"
+   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   xmlns:pdfMerge="http://PdfUtils.csi.org/merge/PdfMerge.xsd"
+
+   >
+
+	<wsdl:import namespace="http://PdfUtils.csi.org/merge/PdfMerge.xsd"  location="PdfMerge.xsd" />
+
+   <wsdl:message name="PdfMergeRequest" >
+      <wsdl:part name="PdfMergeRequest" element="pdfMerge:PdfMergeRequest"/>
+   </wsdl:message>
+
+   <wsdl:message name="PdfMergeResponse">
+      <wsdl:part name="PdfMergeResponse" element="pdfMerge:PdfMergeResponse"/>
+    </wsdl:message>
+
+   <wsdl:portType name="PdfMerge_PortType">
+      <wsdl:operation name="merge2Pdfs">
+         <wsdl:input message="csi:PdfMergeRequest"/>
+         <wsdl:output message="csi:PdfMergeResponse"/>
+      </wsdl:operation>
+   </wsdl:portType>
+
+   <wsdl:binding name="PdfMerge_Binding" type="csi:PdfMerge_PortType">
+      <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdl:operation name="merge2Pdfs">
+        <soap:operation soapAction="http://PdfUtils.csi.org/merge2Pdfs"/>
+        <wsdl:input>
+          <soap:body use="literal"/>
+        </wsdl:input>
+        <wsdl:output>
+          <soap:body use="literal"/>
+        </wsdl:output>
+      </wsdl:operation>
+    </wsdl:binding>
+
+   <wsdl:service name="PdfMerge_Service">
+      <wsdl:documentation>WSDL File for HelloService</wsdl:documentation>
+      <wsdl:port binding="csi:PdfMerge_Binding" name="PdfMerge_Port">
+         <soap:address
+            location="http://172.28.105.55:8080" />
+      </wsdl:port>
+   </wsdl:service>
+</wsdl:definitions>
