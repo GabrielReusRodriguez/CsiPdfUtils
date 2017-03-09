@@ -74,9 +74,8 @@ class PdfMerge_Service(ServiceSOAPBinding):
     def __init__(self, post='', **kw):
         ServiceSOAPBinding.__init__(self, post)
 
+    #Función que implementa el comportamiento de fusión de pdfs.
     def soap_merge2Pdfs(self, ps):
-        #self.request = ps.Parse(PdfMergeRequest.typecode)
-        #return PdfMergeResponse()
         self.request = ps.Parse(PdfMergeRequest.typecode)
         response =  PdfMergeResponse()
         response._error = ns1.llistaErrors_Def("llistaErrors")
@@ -88,7 +87,6 @@ class PdfMerge_Service(ServiceSOAPBinding):
             for pdf in listaPdfs:
                 pdfMerger.add_pdf_b64(pdf)
             response._outputPdf = pdfMerger.write_output_b64()
-            #response._outputPdf = "OK"
         else:
             errorItem = ns1.errorItem_Def("errorItem")
             errorItem._codi = 1

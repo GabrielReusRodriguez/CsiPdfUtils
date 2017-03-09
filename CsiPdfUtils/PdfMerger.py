@@ -11,12 +11,6 @@ class PdfMerger(PdfUtil):
         self.merger = PdfFileMerger()
 
     def add_pdf_b64(self,b64_pdf):
-        #missing_padding = len(b64_pdf) % 4
-        #if missing_padding != 0:
-        #    b64_pdf += b'='* (4 - missing_padding)
-        #return base64.decodestring(data)
-        print b64_pdf + "==="
-        #str_pdf = base64.b64decode(b64_pdf + "===")
         str_pdf = base64.b64decode(b64_pdf)
         stream_pdf = cStringIO.StringIO(str_pdf)
         self.merger.append(stream_pdf)

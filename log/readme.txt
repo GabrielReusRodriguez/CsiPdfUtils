@@ -1,0 +1,1 @@
+Fichero para exportar a git la carpeta "vacia"
